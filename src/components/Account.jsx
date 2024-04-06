@@ -1,18 +1,8 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 
-const Account = () => {
-  const [account, setAccount] = useState({ amount: 0 });
+const Account = ({ increment, incrementbyvalue, account, decrement }) => {
   const [value, setValue] = useState(0);
-
-  function increment() {
-    setAccount({ amount: account.amount + 1 });
-  }
-  function incrementbyvalue(value) {
-    setAccount({ amount: account.amount + value });
-  }
-  function decrement() {
-    setAccount({ amount: account.amount - 1 });
-  }
 
   return (
     <div style={{ border: "2px solid black", padding: "10px" }}>
@@ -26,15 +16,24 @@ const Account = () => {
       <input
         type="number"
         onChange={(e) => {
-        //   e.target.focus;
+          //   e.target.focus;
           setValue(+e.target.value);
         }}
       />
       <hr></hr>
-      <button onClick={()=>incrementbyvalue(value)}>incrementbyvalue {value} +</button>
+      <button onClick={() => incrementbyvalue(value)}>
+        incrementbyvalue {value} +
+      </button>
       <hr></hr>
     </div>
   );
+};
+
+Account.propTypes = {
+  increment: PropTypes.func.isRequired,
+  decrement: PropTypes.func.isRequired,
+  incrementbyvalue: PropTypes.func.isRequired,
+  account: PropTypes.object.isRequired,
 };
 
 export default Account;

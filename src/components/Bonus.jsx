@@ -1,19 +1,18 @@
-import { useState } from "react";
+import PropTypes from "prop-types";
 
-const Bonus = () => {
-  const [bonus, setBonus] = useState({ points: 0 });
-
-  function increment() {
-    setBonus({ points: bonus.points + 1 });
-  }
-
+const Bonus = ({ bonus, incrementBonus }) => {
   return (
-    <div style={{border:"2px solid black",padding:"10px"}}>
+    <div style={{ border: "2px solid black", padding: "10px" }}>
       <h1>Bonus Component</h1>
       <h2>Total Points : {bonus.points}</h2>
-      <button onClick={increment}>Increment points {bonus.points}</button>
+      <button onClick={incrementBonus}>Increment points {bonus.points}</button>
     </div>
   );
+};
+
+Bonus.propTypes = {
+  bonus: PropTypes.object.isRequired,
+  incrementBonus: PropTypes.func.isRequired,
 };
 
 export default Bonus;

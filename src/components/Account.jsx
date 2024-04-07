@@ -1,38 +1,35 @@
 import { useState } from "react";
-import PropTypes from "prop-types";
-import { decrement, increment, incrementByAmount } from "../actions/accountActions";
+import { decrement, getUser, increment, incrementByAmount } from "../actions/accountActions";
+import { useDispatch, useSelector } from "react-redux";
 
-const Account = ({ store}) => {
+const Account = () => {
   const [value, setValue] = useState(0);
+  const amount = useSelector(state => state.account.amount);
+  const points = useSelector(state => state.bonus.points);
+  const dispatch = useDispatch();
 
   return (
     <div style={{ border: "2px solid black", padding: "10px" }}>
       <h2>Account Component</h2>
-      <h3>Total Amount ${store.getState().account.amount}</h3>
-      <hr></hr>
-      <button onClick={store.dispatch(increment())}>Increment +</button>
-      <hr></hr>
-      <button onClick={store.dispatch(decrement())}>decrement -</button>
-      <hr></hr>
+      <h3>Total Amount ${amount}</h3>
+      <h3>Total points ${points}</h3>
+      <hr />
+      <button onClick={() => dispatch(increment())}>Increment +</button>
+      <hr />
+      <button onClick={() => dispatch(decrement())}>Decrement -</button>
+      <hr />
       <input
         type="number"
-        onChange={(e) => {
-          //   e.target.focus;
-          setValue(+e.target.value);
-        }}
+        onChange={(e) => setValue(+e.target.value)}
       />
-      <hr></hr>
-      <button onClick={() => store.dispatch(incrementByAmount(value))}>
-        incrementbyvalue {value} +
+      <hr />
+      <button onClick={() => dispatch(incrementByAmount(value))}>
+        Increment by {value}
       </button>
-      <hr></hr>
+      <button onClick={()=>dispatch(getUser)}>Intialse Account</button>
+      <hr />
     </div>
   );
-};
-
-Account.propTypes = {
-  
-  store:PropTypes.object.isRequired
 };
 
 export default Account;

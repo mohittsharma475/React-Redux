@@ -1,18 +1,19 @@
-import PropTypes from "prop-types";
 import { incrementBonus } from "../actions/accountActions";
+import { useDispatch, useSelector } from "react-redux";
 
-const Bonus = ({ store }) => {
+const Bonus = () => {
+  const points = useSelector(state => state.bonus.points);
+  const amount = useSelector(state => state.account.amount);
+  const dispatch = useDispatch();
+  
   return (
     <div style={{ border: "2px solid black", padding: "10px" }}>
       <h1>Bonus Component</h1>
-      <h2>Total Points : {store.getState().bonus.points}</h2>
-      <button onClick={store.dispatch(incrementBonus())}>Increment points {store.getState().bonus.points}</button>
+      <h2>Total Points : {points}</h2>
+      <h2>Total Amount: {amount}</h2>
+      <button onClick={() => dispatch(incrementBonus())}>Increment points</button>
     </div>
   );
-};
-
-Bonus.propTypes = {
-  store:PropTypes.object.isRequired
 };
 
 export default Bonus;

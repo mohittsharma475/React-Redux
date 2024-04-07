@@ -6,7 +6,7 @@ export function bonusReducer(state = { points: 0 }, action) {
       if (action.payload >= 100) {
         return { points: state.points + 1 };
       }
-      break;
+      return state;
     case actionName.incrementBonus:
       return { points: state.points + 1 };
     default:

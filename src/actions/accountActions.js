@@ -55,7 +55,7 @@ function incrementBonus() {
   return { type: actionName.incrementBonus };
 }
 
-export default{
+export {
     actionName,
     increment,
     incrementBonus,

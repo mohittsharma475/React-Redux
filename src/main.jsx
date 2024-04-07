@@ -13,7 +13,7 @@ const store = createStore(
     account: accountReducer,
     bonus: bonusReducer,
   }),
-  applyMiddleware(logger.default, thunk)
+  applyMiddleware(logger, thunk)
 );
 
 ReactDOM.createRoot(document.getElementById('root')).render(

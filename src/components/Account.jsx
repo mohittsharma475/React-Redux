@@ -1,17 +1,18 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
+import { decrement, increment, incrementByAmount } from "../actions/accountActions";
 
-const Account = ({ increment, incrementbyvalue, account, decrement }) => {
+const Account = ({ store}) => {
   const [value, setValue] = useState(0);
 
   return (
     <div style={{ border: "2px solid black", padding: "10px" }}>
       <h2>Account Component</h2>
-      <h3>Total Amount ${account.amount}</h3>
+      <h3>Total Amount ${store.getState().account.amount}</h3>
       <hr></hr>
-      <button onClick={increment}>Increment +</button>
+      <button onClick={store.dispatch(increment())}>Increment +</button>
       <hr></hr>
-      <button onClick={decrement}>decrement -</button>
+      <button onClick={store.dispatch(decrement())}>decrement -</button>
       <hr></hr>
       <input
         type="number"
@@ -21,7 +22,7 @@ const Account = ({ increment, incrementbyvalue, account, decrement }) => {
         }}
       />
       <hr></hr>
-      <button onClick={() => incrementbyvalue(value)}>
+      <button onClick={() => store.dispatch(incrementByAmount(value))}>
         incrementbyvalue {value} +
       </button>
       <hr></hr>
@@ -30,10 +31,8 @@ const Account = ({ increment, incrementbyvalue, account, decrement }) => {
 };
 
 Account.propTypes = {
-  increment: PropTypes.func.isRequired,
-  decrement: PropTypes.func.isRequired,
-  incrementbyvalue: PropTypes.func.isRequired,
-  account: PropTypes.object.isRequired,
+  
+  store:PropTypes.object.isRequired
 };
 
 export default Account;

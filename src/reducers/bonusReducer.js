@@ -1,4 +1,4 @@
-import { actionName, incrementBonus } from "../actions/accountActions";
+import { actionName} from "../actions/accountActions";
 
 export function bonusReducer(state = { points: 0 }, action) {
   switch (action.type) {

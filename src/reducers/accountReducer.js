@@ -2,9 +2,6 @@
 // return {amount : state.amount+1} immutable
 import {
   actionName,
-  getUserAccountFulfilled,
-  getUserAccountPending,
-  getUserAccountRejected,
 } from "../actions/accountActions";
 
 export function accountReducer(state = { amount: 1 }, action) {

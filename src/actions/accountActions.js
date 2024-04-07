@@ -4,19 +4,19 @@ const actionName = {
   decrement: "account/decrement",
   incrementByAmount: "account/incrementbyamount",
   init: "amount/init",
-  getUser: "acccount/getUser",
-  getUserAccountPending: "acccount/getUser/pending",
-  getUserAccountRejected: "acccount/getUser/rejected",
-  getUserAccountFulfilled: "acccount/getUser/fulfilled",
+  getUser: "account/getUser",
+  getUserAccountPending: "account/getUser/pending",
+  getUserAccountRejected: "account/getUser/rejected",
+  getUserAccountFulfilled: "account/getUser/fulfilled",
   incrementBonus: "bonus/increment",
 };
 
-async function getUser(dispatch, getState) {
+async function getUser(dispatch) {
   // error
 
   try {
     dispatch(getUserAccountPending());
-    const { data } = await axios.get("http://localhost:3000/accounts/1");
+    const { data } = await axios.get("http://localhost:3000/accouts/1");
     dispatch(getUserAccountFulfilled(data.amount));
   } catch (error) {
     dispatch(getUserAccountRejected(error.message));
